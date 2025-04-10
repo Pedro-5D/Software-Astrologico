@@ -6,6 +6,7 @@ from math import sin, cos, tan, atan, atan2, radians, degrees
 import xml.etree.ElementTree as ET
 import numpy as np
 import os
+from skyfield.api import load
 
 app = Flask(__name__)
 CORS(app)
@@ -135,12 +136,14 @@ class AstrologicalInterpreter:
 
 print("Cargando efemérides...")
 try:
-    eph = load('de421.bsp')
-    ts = load.timescale()
-    print("Efemérides cargadas correctamente")
+    # Ruta al archivo 'de421.bsp' dentro de la carpeta 'docs'
+    eph_path = os.path.join('docs', 'de421.bsp')
+    eph = load(eph_path)  # Cargar efemérides desde la ubicación específica
+    ts = load.timescale()  # Cargar escala de tiempo
+    print(f"Efemérides cargadas correctamente desde {eph_path}")
 except Exception as e:
     print(f"Error cargando efemérides: {e}")
-    print("Asegúrate de tener conexión a internet para la descarga inicial")
+    print("Asegúrate de que el archivo 'de421.bsp' esté en la carpeta 'docs'.")
 
 CITIES_DB = {
     "bilbao": {"name": "Bilbao", "lat": 43.2630, "lon": -2.9350, "timezone": "Europe/Madrid"},
