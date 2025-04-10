@@ -6,6 +6,18 @@ from math import sin, cos, tan, atan, atan2, radians, degrees
 import xml.etree.ElementTree as ET
 import numpy as np
 import os
+from skyfield.api import load
+
+print("Cargando efemérides...")
+try:
+    # Ruta explícita al archivo de421.bsp en la carpeta 'docs'
+    eph_path = os.path.join('docs', 'de421.bsp')
+    eph = load(eph_path)  # Cargar el archivo desde la ubicación específica
+    ts = load.timescale()  # Cargar escala de tiempo
+    print(f"Efemérides cargadas correctamente desde {eph_path}")
+except Exception as e:
+    print(f"Error cargando efemérides: {e}")
+    print("Asegúrate de que el archivo 'de421.bsp' esté disponible en la carpeta 'docs'.")
 
 app = Flask(__name__)
 CORS(app)
