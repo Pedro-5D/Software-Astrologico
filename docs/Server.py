@@ -906,7 +906,7 @@ def get_cities():
         return jsonify(cities_list)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
+	    
 @app.route('/calculate', methods=['POST'])
 def calculate():
     try:
