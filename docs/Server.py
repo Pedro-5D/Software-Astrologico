@@ -6,18 +6,6 @@ from math import sin, cos, tan, atan, atan2, radians, degrees
 import xml.etree.ElementTree as ET
 import numpy as np
 import os
-from skyfield.api import load
-
-print("Cargando efemérides...")
-try:
-    # Ruta explícita al archivo de421.bsp en la carpeta 'docs'
-    eph_path = os.path.join('docs', 'de421.bsp')
-    eph = load(eph_path)  # Cargar el archivo desde la ubicación específica
-    ts = load.timescale()  # Cargar escala de tiempo
-    print(f"Efemérides cargadas correctamente desde {eph_path}")
-except Exception as e:
-    print(f"Error cargando efemérides: {e}")
-    print("Asegúrate de que el archivo 'de421.bsp' esté disponible en la carpeta 'docs'.")
 
 app = Flask(__name__)
 CORS(app)
@@ -30,6 +18,19 @@ def init_interpreter():
     except Exception as e:
         print(f"Error inicializando el intérprete: {str(e)}")
         raise
+		
+class AstrologicalInterpreter:
+    """Clase para manejar todas las interpretaciones astrológicas"""
+    
+    def __init__(self, xml_path='interpretations.xml'):
+        """Inicializa el intérprete con los datos XML"""
+        try:
+            self.tree = ET.parse(xml_path)
+            self.root = self.tree.getroot()
+            print("XML de interpretaciones cargado correctamente")
+        except Exception as e:
+            print(f"Error al cargar el archivo XML: {e}")
+            raise
 
     def get_planet_in_sign(self, planet, sign):
         """
