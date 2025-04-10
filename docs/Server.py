@@ -10,14 +10,26 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-def init_interpreter():
-    global interpreter
-    try:
-        interpreter = AstrologicalInterpreter()
-        print("Intérprete astrológico inicializado correctamente")
-    except Exception as e:
-        print(f"Error inicializando el intérprete: {str(e)}")
-        raise
+# Ajusta las rutas para que apunten al directorio 'docs'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+EPH_FILE = os.path.join(BASE_DIR, 'de421.bsp')  # Archivo de efemérides
+XML_FILE = os.path.join(BASE_DIR, 'interpretations.xml')  # Archivo XML
+
+# Carga de efemérides
+try:
+    eph = load(EPH_FILE)
+    print("Efemérides cargadas correctamente.")
+except Exception as e:
+    print(f"Error cargando efemérides: {e}")
+    eph = None
+
+# Carga del archivo XML
+try:
+    tree = ET.parse(XML_FILE)
+    print("Archivo XML cargado correctamente.")
+except Exception as e:
+    print(f"Error al cargar el archivo XML: {e}")
+    tree = None
 		
 class AstrologicalInterpreter:
     """Clase para manejar todas las interpretaciones astrológicas"""
