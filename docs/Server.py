@@ -8,6 +8,7 @@ import numpy as np
 import os
 from skyfield.api import load
 from pathlib import Path
+flask --app Server run --port 8000
 
 app = Flask(__name__)
 CORS(app)
