@@ -1291,7 +1291,7 @@ function App() {
     });
 
     React.useEffect(() => {
-        fetch('http://localhost:8000/cities')
+        fetch('http://localhost:6000/cities')
             .then(response => response.json())
             .then(data => {
                 setCities(data);
@@ -1364,7 +1364,7 @@ function App() {
 
     const handleStarClick = (star) => {
         if (star.filePath) {
-            window.location.href = `http://localhost:8000/open-file?path=${encodeURIComponent(star.filePath)}`;
+            window.location.href = `http://localhost:6000/open-file?path=${encodeURIComponent(star.filePath)}`;
         }
     };
 
