@@ -1042,6 +1042,6 @@ if __name__ == '__main__':
     print("\nCiudades disponibles:")
     for city_key, city_data in CITIES_DB.items():
         print(f"- {city_data['name']}")
-    print("\nServidor iniciando en https://software-astrologico.onrender.com/")
+    print("\nServidor iniciando en https://github.com/Pedro-5D/Software-Astrologico")
 app.run(host='0.0.0.0', port=8000, debug=True)
 
