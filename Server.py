@@ -1042,5 +1042,5 @@ if __name__ == '__main__':
     print("\nCiudades disponibles:")
     for city_key, city_data in CITIES_DB.items():
         print(f"- {city_data['name']}")
-    print("\nServidor iniciando en http://localhost:8000")
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    print("\nServidor iniciando en http://localhost:6000")
+    app.run(host='0.0.0.0', port=6000, debug=True)
