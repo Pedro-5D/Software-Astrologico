@@ -137,12 +137,22 @@ class AstrologicalInterpreter:
 
 print("Cargando efemérides...")
 try:
-    eph = load('de421.bsp')
+    # Ruta al archivo 'de421.bsp' dentro de la carpeta 'docs'
+    eph_path = Path('docs') / 'de421.bsp'
+    
+    # Verificar si el archivo existe
+    if not eph_path.exists():
+        raise FileNotFoundError(f"Archivo no encontrado: {eph_path}")
+    
+    # Cargar efemérides y escala de tiempo
+    eph = load(str(eph_path))  # Convertir a cadena para compatibilidad
     ts = load.timescale()
-    print("Efemérides cargadas correctamente")
+    print(f"Efemérides cargadas correctamente desde {eph_path}")
+except FileNotFoundError as fnf_error:
+    print(f"Error: {fnf_error}")
+    print("Asegúrate de que el archivo 'de421.bsp' esté en la carpeta 'docs'.")
 except Exception as e:
-    print(f"Error cargando efemérides: {e}")
-    print("Asegúrate de tener conexión a internet para la descarga inicial")
+    print(f"Error inesperado cargando efemérides: {e}")
 
 CITIES_DB = {
     "bilbao": {"name": "Bilbao", "lat": 43.2630, "lon": -2.9350, "timezone": "Europe/Madrid"},
