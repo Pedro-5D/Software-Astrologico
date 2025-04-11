@@ -137,22 +137,12 @@ class AstrologicalInterpreter:
 
 print("Cargando efemérides...")
 try:
-    # Ruta al archivo 'de421.bsp' dentro de la carpeta 'docs'
-    eph_path = Path('docs') / 'de421.bsp'
-    
-    # Verificar si el archivo existe
-    if not eph_path.exists():
-        raise FileNotFoundError(f"Archivo no encontrado: {eph_path}")
-    
-    # Cargar efemérides y escala de tiempo
-    eph = load(str(eph_path))  # Convertir a cadena para compatibilidad
+    eph = load('de421.bsp')
     ts = load.timescale()
-    print(f"Efemérides cargadas correctamente desde {eph_path}")
-except FileNotFoundError as fnf_error:
-    print(f"Error: {fnf_error}")
-    print("Asegúrate de que el archivo 'de421.bsp' esté en la carpeta 'docs'.")
+    print("Efemérides cargadas correctamente")
 except Exception as e:
-    print(f"Error inesperado cargando efemérides: {e}")
+    print(f"Error cargando efemérides: {e}")
+    print("Asegúrate de tener conexión a internet para la descarga inicial")
 
 CITIES_DB = {
     "bilbao": {"name": "Bilbao", "lat": 43.2630, "lon": -2.9350, "timezone": "Europe/Madrid"},
@@ -915,7 +905,7 @@ def get_cities():
         return jsonify(cities_list)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-	    
+
 @app.route('/calculate', methods=['POST'])
 def calculate():
     try:
@@ -1042,5 +1032,5 @@ if __name__ == '__main__':
     print("\nCiudades disponibles:")
     for city_key, city_data in CITIES_DB.items():
         print(f"- {city_data['name']}")
-    print("\nServidor iniciando en http://localhost:6000")
-    app.run(host='0.0.0.0', port=6000, debug=True)
+    print("\nServidor iniciando en http://localhost:8000")
+    app.run(host='0.0.0.0', port=8000, debug=True)
