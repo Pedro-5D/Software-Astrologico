@@ -135,8 +135,8 @@ class AstrologicalInterpreter:
             print(f"Error en get_house_ruler_interpretation: {e}")
             return None
 
-	print("Cargando efemérides...")
-	try:
+        print("Cargando efemérides...")
+        try:
 	    # Ruta al archivo 'de421.bsp' dentro de la carpeta 'docs'
 	    eph_path = Path('docs') / 'de421.bsp'
 	    
