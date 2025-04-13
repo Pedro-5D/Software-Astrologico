@@ -138,11 +138,11 @@ class AstrologicalInterpreter:
         print("Cargando efemérides...")
         try:
 	    # Ruta al archivo 'de421.bsp' dentro de la carpeta 'docs'
-	    eph_path = Path('docs') / 'de421.bsp'
+            eph_path = Path('docs') / 'de421.bsp'
 	    
 	    # Verificar si el archivo existe
-	    if not eph_path.exists():
-	        raise FileNotFoundError(f"Archivo no encontrado: {eph_path}")
+                if not eph_path.exists():
+                raise FileNotFoundError(f"Archivo no encontrado: {eph_path}")
 	    
 	    # Cargar efemérides y escala de tiempo
 	    eph = load(str(eph_path))  # Convertir a cadena para compatibilidad
