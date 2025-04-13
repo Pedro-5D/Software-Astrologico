@@ -8,15 +8,6 @@ import numpy as np
 import os
 from skyfield.api import load
 from pathlib import Path
-from flask import Flask  
-app = Flask(__name__)  
-
-@app.route('/calculate')  
-def calculate():  
-    return {"message": "¡Tu API ya está activa!"}  
-
-if __name__ == '__main__':  
-    app.run(host='0.0.0.0', port=8000)  # Asegura que escuche desde Render
 
 app = Flask(__name__)
 CORS(app)
