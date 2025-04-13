@@ -141,7 +141,7 @@ class AstrologicalInterpreter:
             eph_path = Path('docs') / 'de421.bsp'
 	    
 	    # Verificar si el archivo existe
-                if not eph_path.exists():
+            if not eph_path.exists():
                 raise FileNotFoundError(f"Archivo no encontrado: {eph_path}")
 	    
 	    # Cargar efemérides y escala de tiempo
