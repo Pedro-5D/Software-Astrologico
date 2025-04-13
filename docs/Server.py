@@ -7,6 +7,7 @@ import xml.etree.ElementTree as ET
 import numpy as np
 import os
 from skyfield.api import load
+ts = load.timescale()
 from pathlib import Path
 
 app = Flask(__name__)
