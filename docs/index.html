@@ -1308,7 +1308,7 @@ function App() {
 
     // Manejadores de eventos
     const handleCalculate = () => {
-        fetch('http://localhost:8000/calculate', {
+        fetch('https://software-astrologico.onrender.com/calculate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -1319,6 +1319,7 @@ function App() {
                 time: time
             })
         })
+
         .then(response => response.json())
         .then(data => {
             if (data.error) throw new Error(data.error);
