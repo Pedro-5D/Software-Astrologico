@@ -8,6 +8,8 @@ import numpy as np
 import os
 from skyfield.api import load
 ts = load.timescale()
+from skyfield.api import load
+eph = load('de421.bsp')  # Carga las efemérides
 from pathlib import Path
 
 app = Flask(__name__)
