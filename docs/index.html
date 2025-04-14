@@ -1822,23 +1822,8 @@ document.addEventListener("click", function(event) {
 
     console.log("Intentando abrir:", url); // Depuración en consola
 
-    // ✅ Si el enlace es una URL, abrirla directamente
-    if (url.startsWith("https://")) {
-        window.open(url, "_blank");
-        return;
-    }
-
-    // ✅ Si es un archivo local, solicitarlo al servidor
-    fetch(`/open-file?path=${encodeURIComponent(url)}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.url) {
-                window.open(data.url, "_blank");
-            } else {
-                console.error("Error al abrir el archivo.");
-            }
-        })
-        .catch(error => console.error("Error en la solicitud:", error));
+    // ✅ Abrir directamente la URL sin pasar por el servidor
+    window.open(url, "_blank");
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
