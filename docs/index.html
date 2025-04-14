@@ -1812,12 +1812,13 @@ function App() {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
-</script>
-	<script>
-document.querySelectorAll(".star-link").forEach(link => {
+	    
+	    document.querySelectorAll(".star-link").forEach(link => {
     link.addEventListener("click", function(event) {
-        event.preventDefault();
+        event.preventDefault(); // Evita que el enlace haga una acción por defecto
         const url = this.getAttribute("href");
+
+        console.log("Intentando abrir:", url); // Para ver si el evento de clic se detecta correctamente en la consola
 
         fetch(`/open-file?path=${encodeURIComponent(url)}`)
             .then(response => response.json())
@@ -1827,10 +1828,10 @@ document.querySelectorAll(".star-link").forEach(link => {
                 } else {
                     console.error("Error al abrir el archivo.");
                 }
-            });
+            })
+            .catch(error => console.error("Error en la solicitud:", error));
     });
 });
 </script>
-
 </body>
 </html>
