@@ -1104,6 +1104,17 @@ const COLORS = {
 				magnitude: 6
 			}						
     ];
+
+const starsList = document.getElementById("stars-list");
+FIXED_STARS.forEach(star => {
+    const listItem = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = star.url;
+    link.textContent = star.name;
+    link.target = "_blank";  // Se abre en nueva ventana
+    listItem.appendChild(link);
+    starsList.appendChild(listItem);
+});
 	    
 function calculatePrecession(date) {
     const currentDate = new Date(date);
