@@ -1105,6 +1105,10 @@ const COLORS = {
 			}						
     ];
 
+FIXED_STARS.forEach(star => {
+    console.log(`Estrella: ${star.name}, Posición: ${star.longitude_J2000}, Enlace: ${star.url}`);
+});
+
 function calculatePrecession(date) {
     const currentDate = new Date(date);
     const year = currentDate.getFullYear() + (currentDate.getMonth() + 1) / 12;
