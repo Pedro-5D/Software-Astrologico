@@ -1365,18 +1365,18 @@ function App() {
 
     const handleStarClick = (star) => {
     if (star.filePath) {
-        // ✅ Si es una URL externa, abrirla directamente
+        // ✅ Si es una URL externa, abrirla directamente en una nueva pestaña
         if (star.filePath.startsWith("https://")) {
             window.open(star.filePath, "_blank");
             return;
         }
 
-        // ✅ Si es un archivo local, enviarlo al servidor
+        // ✅ Si es un archivo local, enviarlo al servidor para procesarlo
         window.location.href = `https://software-astrologico.onrender.com/open-file?path=${encodeURIComponent(star.filePath)}`;
     }
 };
 
-    // Renderizado
+	// Renderizado
     return (
         <div>
             <div className="controls">
