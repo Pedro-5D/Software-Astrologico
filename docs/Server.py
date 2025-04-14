@@ -902,18 +902,18 @@ def open_file():
     try:
         file_path = request.args.get('path')
 
-        # Si es una URL, redirigir automáticamente
+        # Si la solicitud es una URL, redirigir automáticamente
         if file_path and file_path.startswith("https://"):
             return redirect(file_path)
 
-        # Si es un archivo local, servirlo desde el servidor
+        # Si la solicitud es un archivo local, enviarlo al navegador
         if file_path and os.path.exists(file_path):
             return send_from_directory(os.path.dirname(file_path), os.path.basename(file_path))
 
-        return 'Archivo no encontrado', 404
+        return jsonify({'error': 'Archivo no encontrado'}), 404
 
     except Exception as e:
-        return str(e), 500
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/cities', methods=['GET'])
 def get_cities():
