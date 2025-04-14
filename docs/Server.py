@@ -901,12 +901,19 @@ def serve_html():
 def open_file():
     try:
         file_path = request.args.get('path')
-        if not file_path or not os.path.exists(file_path):
-            return 'Archivo no encontrado', 200  # Devuelve mensaje de error como texto plano
-        os.startfile(file_path)
-        return '', 204
+
+        # Si es una URL, redirigir automáticamente
+        if file_path and file_path.startswith("https://"):
+            return redirect(file_path)
+
+        # Si es un archivo local, servirlo desde el servidor
+        if file_path and os.path.exists(file_path):
+            return send_from_directory(os.path.dirname(file_path), os.path.basename(file_path))
+
+        return 'Archivo no encontrado', 404
+
     except Exception as e:
-        return str(e), 200  # Devuelve el error como texto plano
+        return str(e), 500
 
 @app.route('/cities', methods=['GET'])
 def get_cities():
