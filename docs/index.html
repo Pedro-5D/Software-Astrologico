@@ -1104,18 +1104,11 @@ const COLORS = {
 				magnitude: 6
 			}						
     ];
-
-const starsList = document.getElementById("stars-list");
-FIXED_STARS.forEach(star => {
-    const listItem = document.createElement("li");
-    const link = document.createElement("a");
-    link.href = star.url;
-    link.textContent = star.name;
-    link.target = "_blank";  // Se abre en nueva ventana
-    listItem.appendChild(link);
-    starsList.appendChild(listItem);
-});
 	    
+	    FIXED_STARS.forEach(star => {
+    console.log(`Estrella: ${star.name}, Posición: ${star.longitude_J2000}, Enlace: ${star.url}`);
+});
+    	    
 function calculatePrecession(date) {
     const currentDate = new Date(date);
     const year = currentDate.getFullYear() + (currentDate.getMonth() + 1) / 12;
