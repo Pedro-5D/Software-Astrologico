@@ -902,11 +902,11 @@ def open_file():
     try:
         file_path = request.args.get('path')
 
-        # Si la solicitud es una URL, redirigir automáticamente
+        # Si la solicitud es una URL, devolver la URL en JSON
         if file_path and file_path.startswith("https://"):
-            return redirect(file_path)
+            return jsonify({"url": file_path})
 
-        # Si la solicitud es un archivo local, enviarlo al navegador
+        # Si la solicitud es un archivo local, verificar existencia y enviarlo
         if file_path and os.path.exists(file_path):
             return send_from_directory(os.path.dirname(file_path), os.path.basename(file_path))
 
